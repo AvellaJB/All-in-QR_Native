@@ -12,7 +12,7 @@ export default function Home({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.secondary}>
-        <Text>LOGO</Text>
+        <Text></Text>
         <Text>
           Renseignez votre code évènement pour commencer à scanner vos
           participants.
