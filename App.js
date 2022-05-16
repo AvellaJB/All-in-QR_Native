@@ -6,23 +6,30 @@ import Home from "./pages/Home";
 import ActivitieScanner from "./pages/ActivitieScanner";
 import EntranceScanner from "./pages/EntranceScanner";
 import ScannerChoice from "./pages/ScannerChoice";
+import AccessDenied from "./pages/AccessDenied";
+import AccessGranted from "./pages/AccessGranted";
+import EventProvider from "./EventProvider";
 
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator style={styles.container}>
-        <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen name="ScannerChoice" component={ScannerChoice} />
-        <Stack.Screen name="ActivitiesScanner" component={ActivitieScanner} />
-        <Stack.Screen name="EntranceScanner" component={EntranceScanner} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <EventProvider>
+      <NavigationContainer>
+        <Stack.Navigator style={styles.container}>
+          <Stack.Screen
+            name="Home"
+            component={Home}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen name="ScannerChoice" component={ScannerChoice} />
+          <Stack.Screen name="ActivitiesScanner" component={ActivitieScanner} />
+          <Stack.Screen name="EntranceScanner" component={EntranceScanner} />
+          <Stack.Screen name="AccessGranted" component={AccessGranted} />
+          <Stack.Screen name="AccessDenied" component={AccessDenied} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </EventProvider>
   );
 }
 

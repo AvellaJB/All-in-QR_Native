@@ -2,8 +2,12 @@ import { View, Text, Button, StyleSheet } from "react-native";
 import React, { useState, useEffect } from "react";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import servicesAPI from "../api/servicesAPI";
+import { useContext } from "react";
+import { EventContext } from "../EventProvider";
 
-export default function Scanner() {
+export default function Scanner({ navigation }) {
+  const { event } = useContext(EventContext);
+
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
 
@@ -16,7 +20,13 @@ export default function Scanner() {
 
   const handleBarCodeScanned = ({ type, data }) => {
     let result = data.slice(1, -1);
-    servicesAPI.checkEntrance(result).then((res) => console.log(res));
+    servicesAPI.checkEntrance(result).then((res) => {
+      if (res.event._id === event._id) {
+        navigation.navigate("AccessGranted");
+      } else {
+        navigation.navigate("AccessDenied");
+      }
+    });
     setScanned(true);
   };
 
