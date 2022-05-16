@@ -13,6 +13,10 @@ const servicesAPI = {
       .then((res) => res.data)
       .catch((err) => console.log("errorServicesAPI", err));
   },
+
+  getOneEvent(id) {
+    return base.get("/events/" + id).then((res) => res.data);
+  },
 };
 
 export default servicesAPI;

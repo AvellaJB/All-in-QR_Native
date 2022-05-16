@@ -7,42 +7,79 @@ import {
   Image,
 } from "react-native";
 import React from "react";
+import servicesAPI from "../api/servicesAPI";
+import { useForm, Controller } from "react-hook-form";
+import { useContext } from "react";
+import { EventContext } from "../EventProvider";
 
 export default function Home({ navigation }) {
+  const { setEvent } = useContext(EventContext);
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      eventID: "",
+    },
+  });
+  const onSubmit = (data) => {
+    servicesAPI.getOneEvent(data.eventID).then((res) => {
+      setEvent(res);
+      navigation.navigate("ScannerChoice");
+    });
+  };
+
   return (
-    <View style={styles.container}>
-      <View style={styles.secondary}>
-        <Text></Text>
-        <Text>
-          Renseignez votre code évènement pour commencer à scanner vos
-          participants.
-        </Text>
-        <TextInput style={styles.inputText} placeholder="Code Evènement" />
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("ScannerChoice")}
-        >
-          <Text>Suivant</Text>
-        </TouchableOpacity>
-      </View>
+    <View style={styles.formcontainer}>
+      {errors.firstName && <Text>This is required.</Text>}
+
+      <Controller
+        control={control}
+        rules={{
+          maxLength: 100,
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            style={styles.inputText}
+            onBlur={onBlur}
+            onChangeText={onChange}
+            value={value}
+            placeholder="Code évènement."
+          />
+        )}
+        name="eventID"
+      />
+
+      <TouchableOpacity onPress={handleSubmit(onSubmit)} style={styles.button}>
+        <Text>Se connecter</Text>
+      </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  formcontainer: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
   },
+
   inputText: {
     borderWidth: 2,
+    width: "90%",
     padding: 10,
-    borderRadius: 30,
+    borderRadius: 20,
+    margin: 5,
   },
 
   button: {
-    padding: 10,
+    backgroundColor: "#fff",
+    color: "black",
     borderWidth: 2,
+    padding: 10,
+    margin: 10,
+    borderRadius: 20,
   },
 });
