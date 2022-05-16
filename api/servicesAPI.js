@@ -17,6 +17,10 @@ const servicesAPI = {
   getOneEvent(id) {
     return base.get("/events/" + id).then((res) => res.data);
   },
+
+  listActivities(id) {
+    return base.get(`/activities/${id}`).then((res) => res.data);
+  },
 };
 
 export default servicesAPI;

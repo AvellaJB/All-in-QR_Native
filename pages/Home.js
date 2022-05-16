@@ -14,7 +14,7 @@ import { EventContext } from "../EventProvider";
 
 export default function Home({ navigation }) {
   const { setEvent } = useContext(EventContext);
-
+  const { setActivities } = useContext(EventContext);
   const {
     control,
     handleSubmit,
@@ -25,6 +25,9 @@ export default function Home({ navigation }) {
     },
   });
   const onSubmit = (data) => {
+    servicesAPI.listActivities(data.eventID).then((res) => {
+      setActivities(res);
+    });
     servicesAPI.getOneEvent(data.eventID).then((res) => {
       setEvent(res);
       navigation.navigate("ScannerChoice");

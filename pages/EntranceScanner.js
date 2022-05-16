@@ -1,4 +1,4 @@
-import { View, Text, Button, StyleSheet } from "react-native";
+import { View, Text, Button, StyleSheet, Alert } from "react-native";
 import React, { useState, useEffect } from "react";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import servicesAPI from "../api/servicesAPI";
@@ -21,10 +21,17 @@ export default function Scanner({ navigation }) {
   const handleBarCodeScanned = ({ type, data }) => {
     let result = data.slice(1, -1);
     servicesAPI.checkEntrance(result).then((res) => {
-      if (res.event._id === event._id) {
-        navigation.navigate("AccessGranted");
+      if (res === null) {
+        Alert.alert(
+          "Utilsateur inconnu",
+          "QR Code invalide ou utilisateur inexistant dans notre base de donnée."
+        );
       } else {
-        navigation.navigate("AccessDenied");
+        if (res.event._id === event._id) {
+          navigation.navigate("AccessGranted");
+        } else {
+          navigation.navigate("AccessDenied");
+        }
       }
     });
     setScanned(true);
