@@ -20,13 +20,75 @@ export default function App() {
           <Stack.Screen
             name="Home"
             component={Home}
-            options={{ headerShown: false }}
+            options={{
+              headerShown: false,
+            }}
           />
-          <Stack.Screen name="ScannerChoice" component={ScannerChoice} />
-          <Stack.Screen name="ActivitiesScanner" component={ActivitieScanner} />
-          <Stack.Screen name="EntranceScanner" component={EntranceScanner} />
-          <Stack.Screen name="AccessGranted" component={AccessGranted} />
-          <Stack.Screen name="AccessDenied" component={AccessDenied} />
+          <Stack.Screen
+            name="ScannerChoice"
+            component={ScannerChoice}
+            options={{
+              headerStyle: {
+                backgroundColor: "black",
+              },
+              headerTintColor: "white",
+              headerTitleStyle: {
+                fontWeight: "bold",
+              },
+            }}
+          />
+          <Stack.Screen
+            name="ActivitiesScanner"
+            component={ActivitieScanner}
+            options={{
+              headerStyle: {
+                backgroundColor: "black",
+              },
+              headerTintColor: "white",
+              headerTitleStyle: {
+                fontWeight: "bold",
+              },
+            }}
+          />
+          <Stack.Screen
+            name="EntranceScanner"
+            component={EntranceScanner}
+            options={{
+              headerStyle: {
+                backgroundColor: "black",
+              },
+              headerTintColor: "white",
+              headerTitleStyle: {
+                fontWeight: "bold",
+              },
+            }}
+          />
+          <Stack.Screen
+            name="AccessGranted"
+            component={AccessGranted}
+            options={{
+              headerStyle: {
+                backgroundColor: "black",
+              },
+              headerTintColor: "white",
+              headerTitleStyle: {
+                fontWeight: "bold",
+              },
+            }}
+          />
+          <Stack.Screen
+            name="AccessDenied"
+            component={AccessDenied}
+            options={{
+              headerStyle: {
+                backgroundColor: "black",
+              },
+              headerTintColor: "white",
+              headerTitleStyle: {
+                fontWeight: "bold",
+              },
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </EventProvider>

@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     justifyContent: "flex-end",
+    backgroundColor: "black",
   },
 
   scanAgain: {

@@ -36,8 +36,13 @@ export default function Home({ navigation }) {
 
   return (
     <View style={styles.formcontainer}>
+      <View>
+        <Text style={styles.text}>
+          Renseignez votre code évènement pour commencer à scanner vos
+          participants
+        </Text>
+      </View>
       {errors.firstName && <Text>This is required.</Text>}
-
       <Controller
         control={control}
         rules={{
@@ -47,6 +52,7 @@ export default function Home({ navigation }) {
           <TextInput
             style={styles.inputText}
             onBlur={onBlur}
+            placeholderTextColor="white"
             onChangeText={onChange}
             value={value}
             placeholder="Code évènement."
@@ -56,7 +62,7 @@ export default function Home({ navigation }) {
       />
 
       <TouchableOpacity onPress={handleSubmit(onSubmit)} style={styles.button}>
-        <Text>Se connecter</Text>
+        <Text style={styles.textButton}>Suivant</Text>
       </TouchableOpacity>
     </View>
   );
@@ -65,24 +71,45 @@ export default function Home({ navigation }) {
 const styles = StyleSheet.create({
   formcontainer: {
     flex: 1,
-    alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "black",
   },
 
   inputText: {
     borderWidth: 2,
+    borderColor: "white",
     width: "90%",
     padding: 10,
-    borderRadius: 20,
-    margin: 5,
+    borderRadius: 10,
+    marginLeft: 20,
+    marginTop: 15,
+    marginBottom: 15,
+    marginRight: 20,
+    color: "white",
+    backgroundColor: "#202020",
   },
 
   button: {
-    backgroundColor: "#fff",
-    color: "black",
+    backgroundColor: "white",
+    borderColor: "white",
     borderWidth: 2,
     padding: 10,
-    margin: 10,
-    borderRadius: 20,
+    marginLeft: 20,
+    borderRadius: 10,
+    width: "50%",
+    alignItems: "center",
+  },
+
+  textButton: {
+    fontSize: 15,
+    color: "black",
+    fontWeight: "bold",
+  },
+
+  text: {
+    color: "white",
+    fontSize: 15,
+    marginLeft: 20,
+    marginRight: 20,
   },
 });
