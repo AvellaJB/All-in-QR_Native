@@ -6,7 +6,7 @@ export default function EventProvider({ children }) {
   const [event, setEvent] = useState({});
   const [activities, setActivities] = useState([]);
   const [currentActivitie, setCurrentActivitie] = useState();
-  const [currentAttendee, setCurrentAttendee] = useState();
+  const [currentAttendee, setCurrentAttendee] = useState({});
 
   const value = {
     event,

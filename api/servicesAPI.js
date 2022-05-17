@@ -21,6 +21,10 @@ const servicesAPI = {
   listActivities(id) {
     return base.get(`/activities/${id}`).then((res) => res.data);
   },
+
+  updateAttendee(id, body) {
+    return base.put(`/attendees/${id}`, body);
+  },
 };
 
 export default servicesAPI;

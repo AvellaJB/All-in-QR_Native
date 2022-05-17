@@ -29,7 +29,14 @@ export default function Scanner({ navigation }) {
         );
       } else {
         if (res.event._id === event._id) {
-          setCurrentAttendee(res);
+          const newCurrent = { ...res, present: true };
+          setCurrentAttendee(newCurrent);
+          const id = result;
+          const body = newCurrent;
+          servicesAPI
+            .updateAttendee(id, body)
+            .then((res) => {})
+            .catch((err) => console.log(err));
           navigation.navigate("AccessGranted");
         } else {
           navigation.navigate("AccessDenied");
@@ -73,11 +80,5 @@ const styles = StyleSheet.create({
 
   scanAgain: {
     flex: 1,
-  },
-
-  svgContainer: {
-    flex: 0.2,
-    width: "50%",
-    marginLeft: "25%",
   },
 });
