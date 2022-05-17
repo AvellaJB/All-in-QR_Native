@@ -7,6 +7,7 @@ import { EventContext } from "../EventProvider";
 
 export default function Scanner({ navigation }) {
   const { event } = useContext(EventContext);
+  const { setCurrentAttendee } = useContext(EventContext);
 
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
@@ -28,6 +29,7 @@ export default function Scanner({ navigation }) {
         );
       } else {
         if (res.event._id === event._id) {
+          setCurrentAttendee(res);
           navigation.navigate("AccessGranted");
         } else {
           navigation.navigate("AccessDenied");
@@ -66,6 +68,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     justifyContent: "flex-end",
+    backgroundColor: "black",
   },
 
   scanAgain: {
