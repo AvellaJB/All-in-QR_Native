@@ -11,6 +11,7 @@ import servicesAPI from "../api/servicesAPI";
 import { useForm, Controller } from "react-hook-form";
 import { useContext } from "react";
 import { EventContext } from "../EventProvider";
+import Iconsvg from "../assets/iconsvg";
 
 export default function Home({ navigation }) {
   const { setEvent } = useContext(EventContext);
@@ -36,6 +37,9 @@ export default function Home({ navigation }) {
 
   return (
     <View style={styles.formcontainer}>
+      <View style={styles.svgContainer}>
+        <Iconsvg />
+      </View>
       <View>
         <Text style={styles.text}>
           Renseignez votre code évènement pour commencer à scanner vos
@@ -73,6 +77,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     backgroundColor: "black",
+  },
+
+  svgContainer: {
+    flex: 0.2,
+    width: "50%",
+    marginLeft: "25%",
   },
 
   inputText: {
