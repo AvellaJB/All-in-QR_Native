@@ -10,6 +10,7 @@ import React, { useState } from "react";
 import { Picker } from "@react-native-picker/picker";
 import { useContext } from "react";
 import { EventContext } from "../EventProvider";
+import Iconsvg from "../assets/iconsvg";
 
 export default function ScannerChoice({ navigation }) {
   const { activities, event } = useContext(EventContext);
@@ -17,6 +18,9 @@ export default function ScannerChoice({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <View style={styles.svgContainer}>
+        <Iconsvg />
+      </View>
       <View style={styles.secondary}>
         <View style={styles.topText}>
           <Text style={styles.welcomeText}>Bienvenue sur l'évènement</Text>
@@ -142,5 +146,11 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "black",
     fontWeight: "bold",
+  },
+
+  svgContainer: {
+    flex: 0.2,
+    width: "50%",
+    marginBottom: 30,
   },
 });

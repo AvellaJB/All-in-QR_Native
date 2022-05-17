@@ -74,4 +74,10 @@ const styles = StyleSheet.create({
   scanAgain: {
     flex: 1,
   },
+
+  svgContainer: {
+    flex: 0.2,
+    width: "50%",
+    marginLeft: "25%",
+  },
 });
