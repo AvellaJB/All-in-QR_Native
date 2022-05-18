@@ -15,7 +15,7 @@ const servicesAPI = {
   },
 
   getOneEvent(id) {
-    return base.get("/events/" + id).then((res) => res.data);
+    return base.get("/events/native/" + id).then((res) => res.data);
   },
 
   listActivities(id) {
