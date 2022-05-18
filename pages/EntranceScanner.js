@@ -4,13 +4,15 @@ import { BarCodeScanner } from "expo-barcode-scanner";
 import servicesAPI from "../api/servicesAPI";
 import { useContext } from "react";
 import { EventContext } from "../EventProvider";
+import { useIsFocused } from "@react-navigation/native";
 
 export default function Scanner({ navigation }) {
   const { event } = useContext(EventContext);
   const { setCurrentAttendee } = useContext(EventContext);
+  const isFocused = useIsFocused();
 
   const [hasPermission, setHasPermission] = useState(null);
-  const [scanned, setScanned] = useState(false);
+  /* const [scanned, setScanned] = useState(false); */
 
   useEffect(() => {
     (async () => {
@@ -43,7 +45,7 @@ export default function Scanner({ navigation }) {
         }
       }
     });
-    setScanned(true);
+    /* setScanned(true); */
   };
 
   if (hasPermission === null) {
@@ -55,16 +57,13 @@ export default function Scanner({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <BarCodeScanner
-        onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-        style={StyleSheet.absoluteFillObject}
-      />
-      {scanned && (
-        <Button
-          title={"Tap to scan again"}
-          onPress={() => setScanned(false)}
-          style={styles.scanAgain}
+      {isFocused ? (
+        <BarCodeScanner
+          onBarCodeScanned={/* scanned ? undefined : */ handleBarCodeScanned}
+          style={StyleSheet.absoluteFillObject}
         />
+      ) : (
+        <Text>Lol</Text>
       )}
     </View>
   );

@@ -67,26 +67,28 @@ export default function App() {
             name="AccessGranted"
             component={AccessGranted}
             options={{
-              headerStyle: {
+              headerShown: false,
+              /* headerStyle: {
                 backgroundColor: "black",
               },
               headerTintColor: "white",
               headerTitleStyle: {
                 fontWeight: "bold",
-              },
+              }, */
             }}
           />
           <Stack.Screen
             name="AccessDenied"
             component={AccessDenied}
             options={{
-              headerStyle: {
+              headerShown: false,
+              /* headerStyle: {
                 backgroundColor: "black",
               },
               headerTintColor: "white",
               headerTitleStyle: {
                 fontWeight: "bold",
-              },
+              }, */
             }}
           />
         </Stack.Navigator>

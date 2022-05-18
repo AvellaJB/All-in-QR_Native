@@ -1,9 +1,9 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import { useContext } from "react";
 import { EventContext } from "../EventProvider";
 
-export default function AccessDenied() {
+export default function AccessDenied({ navigation: { goBack } }) {
   const { currentAttendee } = useContext(EventContext);
 
   return (
@@ -31,6 +31,9 @@ export default function AccessDenied() {
             </Text>
           ))}
         </View>
+        <TouchableOpacity onPress={() => goBack()} style={styles.button}>
+          <Text style={styles.textButton}>Retour</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -67,5 +70,22 @@ const styles = StyleSheet.create({
   simpleText: {
     color: "white",
     marginBottom: 10,
+  },
+
+  textButton: {
+    fontSize: 15,
+    color: "black",
+    fontWeight: "bold",
+  },
+
+  button: {
+    backgroundColor: "white",
+    borderColor: "white",
+    borderWidth: 2,
+    padding: 10,
+    marginLeft: 20,
+    borderRadius: 10,
+    width: "50%",
+    alignItems: "center",
   },
 });
