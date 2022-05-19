@@ -19,7 +19,7 @@ const servicesAPI = {
   },
 
   listActivities(id) {
-    return base.get(`/activities/${id}`).then((res) => res.data);
+    return base.get(`/activities/native/${id}`).then((res) => res.data);
   },
 
   updateAttendee(id, body) {
