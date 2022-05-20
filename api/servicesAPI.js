@@ -23,7 +23,7 @@ const servicesAPI = {
   },
 
   updateAttendee(id, body) {
-    return base.put(`/attendees/${id}`, body);
+    return base.put(`/attendees/native/${id}`, body);
   },
 };
 
