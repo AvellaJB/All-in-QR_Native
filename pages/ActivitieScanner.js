@@ -12,7 +12,6 @@ export default function ActivitieScanner({ navigation }) {
   const isFocused = useIsFocused();
 
   const [hasPermission, setHasPermission] = useState(null);
-  /* const [scanned, setScanned] = useState(false); */
 
   useEffect(() => {
     (async () => {
@@ -26,14 +25,17 @@ export default function ActivitieScanner({ navigation }) {
     servicesAPI.checkEntrance(result).then((res) => {
       setCurrentAttendee(res);
       let extraIDs = res.extra_activities.map((activitie) => activitie._id);
-      const found = extraIDs.some((element) => element === currentActivitie);
-      if (found === true) {
-        navigation.navigate("AccessGranted");
-      } else {
-        navigation.navigate("AccessDenied");
-      }
+      servicesAPI.listActivitiesByRoleID({ id: res.role._id }).then((res) => {
+        let roleActivites = res.data.map((activitie) => activitie._id);
+        let combined = extraIDs.concat(roleActivites);
+        const found = combined.some((element) => element === currentActivitie);
+        if (found === true) {
+          navigation.navigate("AccessGranted");
+        } else {
+          navigation.navigate("AccessDenied");
+        }
+      });
     });
-    /* setScanned(true); */
   };
 
   if (hasPermission === null) {
@@ -47,7 +49,7 @@ export default function ActivitieScanner({ navigation }) {
     <View style={styles.container}>
       {isFocused ? (
         <BarCodeScanner
-          onBarCodeScanned={/* scanned ? undefined : */ handleBarCodeScanned}
+          onBarCodeScanned={handleBarCodeScanned}
           style={StyleSheet.absoluteFillObject}
         />
       ) : (

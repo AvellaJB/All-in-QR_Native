@@ -25,6 +25,10 @@ const servicesAPI = {
   updateAttendee(id, body) {
     return base.put(`/attendees/native/${id}`, body);
   },
+
+  listActivitiesByRoleID(body) {
+    return base.post(`/activities/byRole`, body);
+  },
 };
 
 export default servicesAPI;
